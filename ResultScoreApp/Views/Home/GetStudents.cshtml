@@ -1,0 +1,62 @@
+﻿@using ResultScoreApp.Models
+@model IEnumerable<StudentVeiwModel>
+
+
+@{
+    ViewBag.Title = "GetStudents";
+    int i = 1;
+}
+
+
+<h2 style="padding-bottom: 20px">Список студентов</h2>
+
+
+
+
+    <table class="table">
+        <tr>
+            <td></td>
+            <td><h5 style="padding-bottom:5px"><a href="/Home/CreateStudent">Создать нового студента</a></h5></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td style="font-weight: bold; width: 30%">Фамилия Имя Отчество</td>
+            <td></td>
+            <td style="font-weight: bold; text-align: center; width: 6%">ИАИО</td>
+            <td style="font-weight: bold; text-align: center; width: 6% ">ИЯ</td>
+            <td style="font-weight: bold; text-align: center; width: 6% ">ОЭТ</td>
+            <td style="font-weight: bold; text-align: center; width: 6% ">ЦАП</td>
+            <td style="font-weight: bold; text-align: center; width: 6% ">ФКиС</td>
+            <td style="font-weight: bold; text-align: center; width: 6% ">ТСиСА</td>
+            <td style="font-weight: bold; text-align: center; width: 10% ">Итого</td>
+        </tr>
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>@i</td>
+        <td>@item.studentVm.FullName</td>
+        <td>
+            @Html.ActionLink("Править", "Edit", new { id = item.scoreVm.Id }) |
+            @Html.ActionLink("Удалить", "Delete", new { id = item.scoreVm.Id })
+        </td>
+        <td style="text-align:center">@item.scoreVm.Score1</td>
+        <td style="text-align:center">@item.scoreVm.Score2</td>
+        <td style="text-align:center">@item.scoreVm.Score3</td>
+        <td style="text-align:center">@item.scoreVm.Score4</td>
+        <td style="text-align:center">@item.scoreVm.Score5</td>
+        <td style="text-align:center">@item.scoreVm.Score6</td>
+        <td style="text-align:center">@item.scoreVm.TotalScore</td>
+       
+    </tr> i++;
+            }
+     
+    </table>
+
+   

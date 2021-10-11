@@ -1,0 +1,32 @@
+﻿@model ResultScoreApp.Models.Student
+
+@{
+    ViewBag.Title = "CreateStudent";
+}
+
+
+
+@using (Html.BeginForm())
+{
+    <h2 style="padding-bottom: 10px">Карточка нового студента</h2>
+    <hr/>
+    <p>
+        Фамилия<br />
+        @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+    </p>
+    <p>
+        Имя<br />
+        @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+    </p>
+    <p>
+        Отчество<br />
+        @Html.EditorFor(model => model.SecondName, new { htmlAttributes = new { @class = "form-control" } })
+    </p>
+    <p style="padding-top: 20px">
+        <input type="submit" value="Добавить нового студента" class="btn btn-default" style="width: 100%" />
+    </p>
+    <p>
+
+    </p>
+   
+}
