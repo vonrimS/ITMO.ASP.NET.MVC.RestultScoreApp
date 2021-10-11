@@ -18,8 +18,7 @@ namespace ResultScoreApp.Controllers
         }
 
         public ActionResult GetStudents()
-        {
-           
+        {         
 
             var studentViewModel = from st in db.Students.OrderBy(m=>m.LastName).ToList()                             
                                    join sc in db.Scores
@@ -48,12 +47,62 @@ namespace ResultScoreApp.Controllers
             return RedirectToAction("GetStudents");
         }
 
-        public ActionResult Edit()
+        [HttpGet]
+        public ActionResult EditStudent(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+            Student student = db.Students.Find(id);
+
+            if (student != null)
+            {
+
+                return View(student);
+            }
+                        
+            return RedirectToAction("GetStudents");
         }
 
-         
+
+        [HttpPost]
+        public ActionResult EditStudent(Student student)
+        {
+            return RedirectToAction("GetStudents");
+        }
+
+        [HttpGet]
+        public ActionResult EditScores(int? id)
+        {
+
+            var students = db.Students.ToList();
+            var student = students.Where(p => p.ScoreId == id);            
+            ViewBag.StudentFullName = student.First().FullName;
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+            Score score = db.Scores.Find(id);
+            
+            if (score != null)
+            {
+                
+                return View(score);
+            }
+
+            return RedirectToAction("GetStudents");
+        }
+
+        [HttpPost]
+        public ActionResult EditScores(Score score)
+        {
+            db.Entry(score).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("GetStudents");
+        }
+
+
 
         protected override void Dispose(bool disposing)
         {

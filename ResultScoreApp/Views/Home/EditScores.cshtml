@@ -1,0 +1,54 @@
+﻿@using ResultScoreApp.Models
+
+@model Score
+
+@{
+    ViewBag.Title = "Редактировать оценки студента";
+}
+
+
+@using (Html.BeginForm())
+{
+    <h2 style="padding: 10px 0 10px 0">Редактировать оценки студента </h2>
+    <hr />
+    @Html.HiddenFor(model => model.Id)
+    <h2 style="padding: 10px 0 10px 0">ФИО: @ViewBag.StudentFullName</h2>
+
+
+    <table class="table">
+        <tr style="vertical-align:central">
+            <td style="vertical-align:middle">Инженерные аспекты информационного общества</td>
+            <td>@Html.EditorFor(model => model.Score1, new { htmlAttributes = new { @class = "form-control" } })</td>
+        </tr>
+        <tr>
+            <td>Иностранный язык</td>
+            <td>@Html.EditorFor(model => model.Score2, new { htmlAttributes = new { @class = "form-control" } })</td>
+        </tr>
+        <tr>
+            <td>Общая экономическая теория</td>
+            <td> @Html.EditorFor(model => model.Score3, new { htmlAttributes = new { @class = "form-control" } })</td>
+        </tr>
+        <tr>
+            <td>Цифровая архитектура предприятия</td>
+            <td> @Html.EditorFor(model => model.Score4, new { htmlAttributes = new { @class = "form-control" } })</td>
+        </tr>
+        <tr>
+            <td>Физическая культура и спорт</td>
+            <td> @Html.EditorFor(model => model.Score5, new { htmlAttributes = new { @class = "form-control" } })</td>
+        </tr>
+        <tr>
+            <td>Теория систем и системный анализ</td>
+            <td> @Html.EditorFor(model => model.Score6, new { htmlAttributes = new { @class = "form-control" } })</td>
+        </tr>
+    </table>
+
+   
+
+    <div>
+        <input type="submit" value="Сохранить оценки" class="btn btn-default" style="width: 100%" />
+    </div>
+
+
+
+
+}
